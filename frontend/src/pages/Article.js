@@ -14,6 +14,7 @@ const Article = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      window.scrollTo(0, 0);
       const result = await fetch(`/api/article/${name}`);
       const body = await result.json();
       console.log(body);
