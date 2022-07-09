@@ -7,7 +7,7 @@ const Home = () => {
         Hello, Welcome to my Blog!
       </h1>
       <p className="mx-auto leading-loose text-justify mb-4">
-        Here's where you can find all the greatest from the blog—recipes, tips
+        Here's where you can find all the greatest from the blog — recipes, tips
         and tricks and more.
       </p>
       <p className="mx-auto leading-loose text-justify mb-4">
@@ -17,8 +17,13 @@ const Home = () => {
         In this space, I am always sharing fresh, flavorful, healthy recipes
         that I love to make and eat in my real, actual, every day life. If I
         wouldn't eat it in real life, I won't put in on the blog. My goal is to
-        inspire you with food that is both approachable ND exciting, whether
-        you're cooking for yourself, your family or your friends.
+        inspire you with food that is both approachable and exciting, whether
+        you're cooking for yourself, your family or your friends. Here you’ll
+        get a collection of delicious recipes that your family will love, all
+        tested and approved.
+      </p>
+      <p className="mx-auto leading-loose text-justify mb-4">
+        Cooking is my passion so please follow along and share what I create!
       </p>
     </div>
   );
