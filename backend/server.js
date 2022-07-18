@@ -1,26 +1,23 @@
 const express = require("express");
-const { MongoClient } = require("mongodb");
 const bodyParser = require("body-parser");
+const dotenv = require("dotenv");
+const userRoutes = require("./routes/userRoutes");
+const connectDB = require("./config/db");
+const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 
 const app = express();
+dotenv.config();
+connectDB();
+app.use(express.json());
+
 app.use(bodyParser.json());
+app.use("/api/auth", userRoutes);
+app.use(notFound);
+app.use(errorHandler);
+
 app.get("/", (req, res) => {
   res.send("API is running");
 });
-
-const connectDB = async (operations, res) => {
-  try {
-    const client = await MongoClient.connect("mongodb://localhost:27017", {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    const db = client.db("blog");
-    await operations(db);
-    client.close();
-  } catch (error) {
-    res.status(500).json({ message: "Error connecting to db", error });
-  }
-};
 
 app.get("/api/article/:name", async (req, res) => {
   connectDB(async (db) => {
@@ -54,5 +51,7 @@ app.post("/api/article/:name/post-comments", (req, res) => {
     res.status(200).json(updatedArticleDetails);
   }, res);
 });
-
-app.listen(5000, console.log("Server started on PORT 5000"));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () =>
+  console.log(`Server running on port :http://localhost:${PORT}`)
+);
