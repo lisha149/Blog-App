@@ -53,6 +53,7 @@ app.post("/api/article/:name/post-comments", (req, res) => {
     res.status(200).json(updatedArticleDetails);
   }, res);
 });
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () =>
   console.log(`Server running on port :http://localhost:${PORT}`)
