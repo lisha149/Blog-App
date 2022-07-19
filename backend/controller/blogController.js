@@ -1,5 +1,7 @@
 const Blog = require("../model/blogModel");
 const User = require("../model/userModel");
+const mongoose = require("mongoose");
+
 const getAllArticles = async (req, res, next) => {
   let articles;
   try {
@@ -15,6 +17,15 @@ const getAllArticles = async (req, res, next) => {
 
 const addArticle = async (req, res, next) => {
   const { title, content, thumbnail, user } = req.body;
+  let existingUser;
+  try {
+    existingUser = await User.findById(user);
+  } catch (err) {
+    return console.log(err);
+  }
+  if (!existingUser) {
+    return res.status(400).json({ message: "Unable to find the user" });
+  }
   const article = new Blog({
     title,
     content,
@@ -22,7 +33,13 @@ const addArticle = async (req, res, next) => {
     user,
   });
   try {
-    await article.save();
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    await article.save({ session });
+
+    existingUser.blogs.push(article);
+    await existingUser.save({ session });
+    await session.commitTransaction();
   } catch (err) {
     console.log(err);
     return res.status(500).json({ message: err });
