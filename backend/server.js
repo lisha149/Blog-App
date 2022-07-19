@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const userRoutes = require("./routes/userRoutes");
+const blogRoutes = require("./routes/blogRoutes");
 const connectDB = require("./config/db");
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 
@@ -12,6 +13,7 @@ app.use(express.json());
 
 app.use(bodyParser.json());
 app.use("/api/auth", userRoutes);
+app.use("/api/article", blogRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
