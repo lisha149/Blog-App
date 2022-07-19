@@ -50,4 +50,16 @@ const authUser = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { registerUser, authUser };
+const getAllUser = asyncHandler(async (req, res) => {
+  let users;
+  try {
+    users = await User.find();
+  } catch (err) {
+    console.log(err);
+  }
+  if (!users) {
+    return res.status(404).json({ message: "No Users Found" });
+  }
+  return res.status(200).json({ users });
+});
+module.exports = { registerUser, authUser, getAllUser };
