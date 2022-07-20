@@ -523,6 +523,12 @@ video {
 .mt-1 {
   margin-top: 0.25rem;
 }
+.ml-40 {
+  margin-left: 10rem;
+}
+.ml-0 {
+  margin-left: 0px;
+}
 .mb-20 {
   margin-bottom: 5rem;
 }
@@ -540,6 +546,9 @@ video {
 }
 .table {
   display: table;
+}
+.hidden {
+  display: none;
 }
 .h-full {
   height: 100%;
@@ -598,6 +607,10 @@ video {
 .bg-gray-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(107 114 128 / var(--tw-bg-opacity));
+}
+.bg-gray-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
 }
 .object-cover {
   object-fit: cover;
