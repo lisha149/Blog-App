@@ -59,6 +59,7 @@ const LoginPage = () => {
           </Avatar>
           <h2>Login</h2>
         </Grid>
+        {error && <Error>{error}</Error>}
         <Formik
           initialValues={initialValues}
           onSubmit={onSubmit}

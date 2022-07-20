@@ -71,6 +71,7 @@ const RegisterPage = (name, email, password, confirmPassword) => {
             Please fill this form to create an account!
           </Typography>
         </Grid>
+        {error && <Error>{error}</Error>}
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
